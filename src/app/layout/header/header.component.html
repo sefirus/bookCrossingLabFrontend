@@ -1,1 +1,32 @@
-<p>header works!</p>
+<mat-toolbar color="primary" class="header-container">
+  <div class="header-buttons">
+    <a mat-button routerLink="/">VetClinic</a>
+    <a mat-button routerLinkActive="active" routerLink="/shelves">Shelves</a>
+    <a mat-button routerLinkActive="active" routerLink="/library">Library</a>
+
+    <a mat-button
+            *ngIf="authService.isAuthorized() && authService.isInRole('PowerUser')"
+            [matMenuTriggerFor]="menu">Management</a>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLinkActive="active" routerLink="/users/management">Users</a>
+      <mat-divider></mat-divider>
+      <a mat-menu-item routerLinkActive="active" routerLink="/shelves/management">Shelves</a>
+    </mat-menu>
+
+  </div>
+
+  <div class="user-operations-container">
+    <a mat-button *ngIf="!authService.isAuthorized()" routerLink="auth/signup">Sign up</a>
+    <a mat-button *ngIf="!authService.isAuthorized()" routerLink="auth/login">Login</a>
+    <a *ngIf="authService.isAuthorized()" [routerLink]="['/users', authService.getUserId()]">
+      <div class="user-img-wrapper">
+        <img
+          [src]="profilePictureLink"
+          (error)="profilePictureLink='/assets/images/default_profile_pic.jpg'"
+          alt="Your profile picture">
+      </div>
+    </a>
+
+    <a class="logout-button" mat-button *ngIf="authService.isAuthorized()" (click)="onLogout()">Logout</a>
+  </div>
+</mat-toolbar>
