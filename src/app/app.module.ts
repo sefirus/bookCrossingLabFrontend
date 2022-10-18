@@ -10,7 +10,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {LayoutModule} from "./layout/layout.module";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatIcon, MatIconModule} from "@angular/material/icon";
         MatButtonModule,
         MatTableModule,
         LayoutModule,
-        MatIconModule
+        MatIconModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

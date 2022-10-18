@@ -17,6 +17,8 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2020",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "module": "es2020",
     "lib": [
       "es2020",
@@ -28,5 +30,6 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "allowSyntheticDefaultImports": true
 }

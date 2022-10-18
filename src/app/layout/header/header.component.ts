@@ -15,9 +15,14 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
 
   onLogout(): void {
+    this.authService.logout()
+  }
 
+  onLogin(): void{
+    this.authService.login("SuperAdminPassword", "admin@email.com").subscribe()
   }
 }
