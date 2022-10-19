@@ -67,7 +67,6 @@ export class AuthService {
         password: password
       };
     const url = `${apiBase}/login`;
-    console.log(url);
     return this.http.post(url, request, {responseType: 'text'})
       .pipe(
         tap(tokenResponse => {

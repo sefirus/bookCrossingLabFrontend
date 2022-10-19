@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../core/services/auth.service";
+import {MatDialog} from "@angular/material/dialog";
+import {LoginComponent} from "../../features/user-profile/login/login.component";
 
 @Component({
   selector: 'app-header',
@@ -12,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    private matDialog : MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +26,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin(): void{
-    this.authService.login("SuperAdminPassword", "admin@email.com").subscribe()
+    //this.authService.login("SuperAdminPassword", "admin@email.com").subscribe()
+    const dialogRef = this.matDialog.open(LoginComponent, {
+      data: {email: "", password : ""}
+    });
   }
 }

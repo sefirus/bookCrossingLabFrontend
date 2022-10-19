@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {RouterLinkActive, RouterLinkWithHref} from "@angular/router";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -28,7 +29,9 @@ import {MatDividerModule} from "@angular/material/divider";
     RouterLinkWithHref,
     RouterLinkActive,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class LayoutModule { }
