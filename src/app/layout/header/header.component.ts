@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../core/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "../../features/user-profile/login/login.component";
+import {RegisterComponent} from "../../features/user-profile/register/register.component";
 
 @Component({
   selector: 'app-header',
@@ -28,6 +29,12 @@ export class HeaderComponent implements OnInit {
   onLogin(): void{
     //this.authService.login("SuperAdminPassword", "admin@email.com").subscribe()
     const dialogRef = this.matDialog.open(LoginComponent, {
+      data: {email: "", password : ""}
+    });
+  }
+
+  onRegister(): void{
+    const dialogRef = this.matDialog.open(RegisterComponent, {
       data: {email: "", password : ""}
     });
   }

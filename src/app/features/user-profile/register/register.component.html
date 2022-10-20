@@ -1,0 +1,76 @@
+<div [formGroup]="form">
+  <div class="mat-title">Sign Up</div>
+  <mat-form-field [ngStyle]="{'width':'520px'}" appearance="outline">
+    <mat-label>Email *</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      type="string"
+      minlength="1"
+      placeholder="Email">
+    <mat-hint>Enter your email</mat-hint>
+  </mat-form-field>
+  <p class="names-container">
+    <mat-form-field [ngStyle]="{'width':'240px'}" appearance="outline">
+      <mat-label>First name *</mat-label>
+      <input
+        matInput
+        formControlName="firstName"
+        type="string"
+        minlength="1"
+        placeholder="First name">
+      <mat-hint>Enter your first name</mat-hint>
+    </mat-form-field>
+    <mat-form-field [ngStyle]="{'width':'240px'}" appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input
+        matInput
+        formControlName="lastName"
+        type="string"
+        minlength="1"
+        placeholder="Last name">
+      <mat-hint>Enter your email</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field [ngStyle]="{'width':'520px'}" appearance="outline">
+      <mat-label>Password *</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        type="password"
+        minlength="1"
+        placeholder="Password">
+      <mat-hint>Enter your password</mat-hint>
+      <mat-error *ngIf="isPasswordInvalid">Length must be greater than 1</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field [ngStyle]="{'width':'520px'}" appearance="outline">
+      <mat-label>Repeat password *</mat-label>
+      <input
+        matInput
+        formControlName="repeatPassword"
+        type="password"
+        minlength="1"
+        placeholder="Password">
+      <mat-hint>Repeat your password</mat-hint>
+      <mat-error *ngIf="isPasswordInvalid">Length must be greater than 1</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field [ngStyle]="{'width':'520px'}" appearance="outline">
+      <mat-label>Choose a birth date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </p>
+
+  <div class="buttons-div">
+    <button mat-raised-button type="submit" [disabled]="isButtonDisabled()" (click)="onRegister()">Login</button>
+  </div>
+</div>

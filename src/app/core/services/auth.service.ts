@@ -75,6 +75,29 @@ export class AuthService {
     );
   }
 
+  public register(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+    birthDate: string
+  ) : Observable<string>{
+    const request = {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      birthDate: birthDate
+    }
+    const url = `${apiBase}/register`;
+    return this.http.post(url, request, {responseType: 'text'})
+      .pipe(
+        tap(tokenResponse => {
+          localStorage.setItem("token", tokenResponse)
+        })
+      );
+  }
+
   public logout(): void{
     localStorage.removeItem("token")
   }

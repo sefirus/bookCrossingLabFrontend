@@ -16,6 +16,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import {HeaderComponent} from "./layout/header/header.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 const routes: Routes = [
@@ -45,7 +47,9 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
-        MatDialogModule
+        MatDialogModule,
+      MatDatepickerModule,
+      MatNativeDateModule
     ],
   providers: [],
   bootstrap: [AppComponent]

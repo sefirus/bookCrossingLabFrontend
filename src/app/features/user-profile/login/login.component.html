@@ -8,7 +8,7 @@
       type="string"
       minlength="1"
       placeholder="Email">
-<!--    <mat-hint>Length must be greater than 1</mat-hint>-->
+    <mat-hint>Length must be greater than 1</mat-hint>
     <mat-error *ngIf="isEmailInvalid">Length must be greater than 1</mat-error>
   </mat-form-field>
   <p>
@@ -17,10 +17,10 @@
       <input
         matInput
         formControlName="password"
-        type="string"
+        type="password"
         minlength="1"
         placeholder="Password">
-<!--      <mat-hint>Length must be greater than 1</mat-hint>-->
+      <mat-hint>Length must be greater than 1</mat-hint>
       <mat-error *ngIf="isPasswordInvalid">Length must be greater than 1</mat-error>
     </mat-form-field>
   </p>
