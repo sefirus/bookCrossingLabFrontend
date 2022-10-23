@@ -11,13 +11,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {LayoutModule} from "./layout/layout.module";
 import {MatIconModule} from "@angular/material/icon";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {ProfilePageComponent} from "./features/user-profile/profile-page/profile-page.component";
+import {InterceptorInterceptor} from "./core/interceptors/interceptor.interceptor";
 
 
 const routes: Routes = [
@@ -57,7 +58,9 @@ const routes: Routes = [
       MatDatepickerModule,
       MatNativeDateModule
     ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

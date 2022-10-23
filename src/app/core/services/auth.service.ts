@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import configData from '../../../assets/config.json';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import jwtDecode from 'jwt-decode';
 
@@ -14,6 +14,10 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) { }
+
+  public getAuthorizationToken(): string {
+    return localStorage.getItem('token') ?? "";
+  }
 
   public isAuthorized() : boolean {
     const tokenStr = localStorage.getItem('token');

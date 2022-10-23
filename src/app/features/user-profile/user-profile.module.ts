@@ -12,6 +12,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {InterceptorInterceptor} from "../../core/interceptors/interceptor.interceptor";
 
 
 
@@ -34,6 +36,9 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     MatIconModule,
     MatNativeDateModule,
     MatRippleModule
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true }
   ]
 })
 export class UserProfileModule { }
