@@ -4,6 +4,8 @@ import {AuthService} from "../../../core/services/auth.service";
 import {HttpClient} from "@angular/common/http";
 import configData from "../../../../assets/config.json";
 import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {EditUserComponent} from "../edit-user/edit-user.component";
 
 let apiBase = configData.apiBase
 
@@ -19,9 +21,12 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private http: HttpClient,
-    private router: Router
-  ) {
-    http.get<User>(`${apiBase}/users/${auth.getUserId()}`)
+    private router: Router,
+    private matDialog : MatDialog,
+  ) { }
+
+  ngOnInit(): void {
+    this.http.get<User>(`${apiBase}/users/${this.auth.getUserId()}`)
       .subscribe(data => {
         this.currentUser = data;
       }, error => {
@@ -29,10 +34,15 @@ export class ProfilePageComponent implements OnInit {
       })
   }
 
-  ngOnInit(): void {
-  }
-
   onEdit(): void{
-
+    const dialogRef = this.matDialog.open(EditUserComponent, {
+      data: this.currentUser
+    });
+    dialogRef.afterClosed().subscribe(
+      (needRefresh: boolean) => {
+        if(needRefresh){
+          this.ngOnInit();
+      }
+    });
   }
 }
