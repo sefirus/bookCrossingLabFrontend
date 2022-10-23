@@ -20,6 +20,7 @@
         minlength="1"
         placeholder="First name">
       <mat-hint>Enter your first name</mat-hint>
+      <mat-error *ngIf="isFirstNameInvalid">Length must be greater than 1</mat-error>
     </mat-form-field>
     <mat-form-field [ngStyle]="{'width':'240px'}" appearance="outline">
       <mat-label>Last name</mat-label>
@@ -30,6 +31,7 @@
         minlength="1"
         placeholder="Last name">
       <mat-hint>Enter your email</mat-hint>
+      <mat-error *ngIf="isLastNameInvalid">Length must be greater than 1</mat-error>
     </mat-form-field>
   </p>
   <p>

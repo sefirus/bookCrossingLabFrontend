@@ -3,6 +3,7 @@ import {AuthService} from "../../core/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "../../features/user-profile/login/login.component";
 import {RegisterComponent} from "../../features/user-profile/register/register.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private matDialog : MatDialog
+    private matDialog : MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout(): void {
     this.authService.logout()
+    this.router.navigate(['']);
   }
 
   onLogin(): void{

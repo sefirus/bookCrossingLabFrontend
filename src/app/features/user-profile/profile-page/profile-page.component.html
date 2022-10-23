@@ -1,0 +1,16 @@
+<div class="page-wrapper">
+  <div class="img-wrapper">
+    <img [src]="currentUser?.profilePicture ?? '/assets/images/default_profile_pic.jpg'">
+    <div class="credentials">
+      <p class="mat-headline">{{currentUser?.firstName}} {{currentUser?.lastName}}</p>
+      <p class="mat-subheader">{{currentUser?.email}}</p>
+      <p class="mat-subheader">{{currentUser?.birthDate?.toString()}}</p>
+      <button
+        mat-raised-button
+        *ngIf="currentUser?.id == auth.getUserId()"
+        color="primary"
+        (click)="onEdit()">Edit</button>
+    </div>
+  </div>
+  <p>current book copies here</p>
+</div>

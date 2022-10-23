@@ -14,17 +14,23 @@ import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
-import {HeaderComponent} from "./layout/header/header.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {ProfilePageComponent} from "./features/user-profile/profile-page/profile-page.component";
 
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule),
+  },
+  {
+    path: "profile",
+    loadChildren: () => import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule),
+    component: ProfilePageComponent
   }
+
 ];
 
 

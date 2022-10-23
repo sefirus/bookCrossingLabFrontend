@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
   public isPasswordInvalid : boolean = true
   public isRepeatPasswordInvalid : boolean = true
   public isFirstNameInvalid : boolean = true
+  public isLastNameInvalid : boolean = true
   public isEmailInvalid : boolean = true
   public isButtonDisabled() : boolean{ return this.isPasswordInvalid
     || this.isRepeatPasswordInvalid
@@ -53,6 +54,14 @@ export class RegisterComponent implements OnInit {
         this.isFirstNameInvalid = false;
       }
     });
+    this.form.controls.lastName.valueChanges.subscribe(data => {
+      if(data?.toString().length === 0){
+        this.form.controls.lastName.setErrors([]);
+        this.isLastNameInvalid = true;
+      } else {
+        this.isLastNameInvalid = false;
+      }
+    });
     this.form.controls.password.valueChanges.subscribe(data => {
       if(data?.toString().length === 0){
         this.form.controls.password.setErrors([]);
@@ -69,6 +78,12 @@ export class RegisterComponent implements OnInit {
         this.isRepeatPasswordInvalid = false;
       }
     });
+    this.form.controls.birthDate.valueChanges.subscribe(data => {
+      if(data?.toString().length === 0){
+        this.form.controls.birthDate.setErrors([]);
+      }
+    });
+
   }
 
   onRegister(): void{
@@ -82,7 +97,6 @@ export class RegisterComponent implements OnInit {
           this.dialogRef.close(true)
         },
         error => {
-          console.log(error)
           this.form.controls.email.setErrors([]);
           this.form.controls.password.setErrors([]);
           this.form.controls.repeatPassword.setErrors([]);

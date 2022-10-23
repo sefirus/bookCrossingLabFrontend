@@ -5,8 +5,6 @@ export interface User {
   birthDate: Date;
   id: number;
   isActive: boolean;
-  profilePictureId: string;
   profilePicture: string;
   currentBooks: string[] | null;
-  createdAt: Date;
 }

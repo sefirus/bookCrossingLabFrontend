@@ -10,13 +10,17 @@ import { RegisterComponent } from './register/register.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
 import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfilePageComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
