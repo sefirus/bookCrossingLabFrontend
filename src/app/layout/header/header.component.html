@@ -2,12 +2,34 @@
   <div class="header-buttons">
     <a mat-button routerLink="/">VetClinic</a>
     <a mat-button routerLinkActive="active" routerLink="/shelves">Shelves</a>
-    <a mat-button routerLinkActive="active" routerLink="/library">Library</a>
+    <a mat-button
+       routerLinkActive="active"
+       routerLink="/library"
+       [disabled]="parentMenuCategory == null"
+       [matMenuTriggerFor]="catalogMenu">Library</a>
+
+    <mat-menu #catalogMenu="matMenu">
+      <div *ngFor="let category of parentMenuCategory!.childCategories; let i = index">
+        <mat-divider *ngIf="i != 0"></mat-divider>
+        <a mat-menu-item
+          routerLinkActive="active"
+          routerLink="/books/by-category/{{category.id}}"
+          [matMenuTriggerFor]="category.childCategories.length > 0 ? firstChild : null">{{category.name}}</a>
+        <mat-menu #firstChild="matMenu">
+          <div *ngFor="let firstChild of category!.childCategories; let i = index">
+            <mat-divider *ngIf="i != 0"></mat-divider>
+              <a mat-menu-item
+                 routerLinkActive="active"
+                 routerLink="/books/by-category/{{firstChild.id}}}">{{firstChild.name}}</a>
+          </div>
+        </mat-menu>
+      </div>
+    </mat-menu>
 
     <a mat-button
             *ngIf="authService.isAuthorized() && authService.isManager()"
-            [matMenuTriggerFor]="menu">Management</a>
-    <mat-menu #menu="matMenu">
+            [matMenuTriggerFor]="managementMenu">Management</a>
+    <mat-menu #managementMenu="matMenu">
       <a mat-menu-item routerLinkActive="active" routerLink="/users/management">Users</a>
       <mat-divider></mat-divider>
       <a mat-menu-item routerLinkActive="active" routerLink="/shelves/management">Shelves</a>

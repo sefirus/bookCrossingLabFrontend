@@ -4,6 +4,12 @@ import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "../../features/user-profile/login/login.component";
 import {RegisterComponent} from "../../features/user-profile/register/register.component";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {Category} from "../../core/models/Category";
+import configData from "../../../assets/config.json";
+
+let apiBase = configData.apiBase
+
 
 @Component({
   selector: 'app-header',
@@ -13,15 +19,20 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
   userId: number = 0;
   profilePictureLink?: string;
+  parentMenuCategory?: Category
 
   constructor(
     public authService: AuthService,
     private matDialog : MatDialog,
+    private http : HttpClient,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
+    this.http.get<Category>(`${apiBase}/categories`).subscribe(data => {
+      this.parentMenuCategory = data;
+      console.log(data)
+    })
   }
 
   onLogout(): void {
@@ -30,7 +41,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin(): void{
-    //this.authService.login("SuperAdminPassword", "admin@email.com").subscribe()
     const dialogRef = this.matDialog.open(LoginComponent, {
       data: {email: "", password : ""}
     });
