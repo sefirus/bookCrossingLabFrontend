@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Category>(`${apiBase}/categories`).subscribe(data => {
       this.parentMenuCategory = data;
-      console.log(data)
     })
   }
 

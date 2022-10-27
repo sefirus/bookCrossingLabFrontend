@@ -19,6 +19,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {ProfilePageComponent} from "./features/user-profile/profile-page/profile-page.component";
 import {InterceptorInterceptor} from "./core/interceptors/interceptor.interceptor";
+import {BooksPageComponent} from "./features/library/books-page/books-page.component";
 
 
 const routes: Routes = [
@@ -30,7 +31,12 @@ const routes: Routes = [
     path: "profile",
     loadChildren: () => import('./features/user-profile/user-profile.module').then(m => m.UserProfileModule),
     component: ProfilePageComponent
+  },
+  {
+    path: "books",
+    loadChildren: () => import('./features/library/library.module').then(m => m.LibraryModule),
   }
+
 
 ];
 
