@@ -1,3 +1,21 @@
 <div class="page-wrapper">
-  <p class ="mat-headline">{{currentCategory?.name}} Books</p>
+  <p class="mat-headline">{{currentCategory?.name}} Books</p>
+  <div class="filters-wrapper">
+    <div class="filters-header">
+      <p class="mat-h2">Filters</p>
+      <button mat-raised-button color="primary" *ngIf="hasFilterChanged">Apply</button>
+    </div>
+    <p class="mat-h3, filters-section-header">Writers</p>
+    <div *ngFor="let writer of filteredModel?.filters?.writers">
+      <mat-checkbox (change)="onWriterCheckBox($event, writer)" >{{writer.fullName}}</mat-checkbox>
+    </div>
+    <p class="mat-h3, filters-section-header">Publishers</p>
+    <div *ngFor="let publisher of filteredModel?.filters?.publishers">
+      <mat-checkbox >{{publisher.name}}</mat-checkbox>
+    </div>
+    <p class="mat-h3, filters-section-header">Categories</p>
+    <div *ngFor="let category of filteredModel?.filters?.categories">
+      <mat-checkbox >{{category.name}}</mat-checkbox>
+    </div>
+  </div>
 </div>

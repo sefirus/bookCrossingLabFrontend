@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BooksPageComponent } from './books-page/books-page.component';
 import {RouterModule, Routes} from "@angular/router";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
   {
@@ -17,7 +19,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatCheckboxModule,
+    MatButtonModule
   ],
   exports: [RouterModule]
 })
