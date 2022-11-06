@@ -1,9 +1,9 @@
 <div class="page-wrapper">
-  <p class="mat-headline">{{currentCategory?.name}} Books</p>
+<!--  <p class="mat-headline">{{currentCategory?.name}} Books</p>-->
   <div class="filters-wrapper">
     <div class="filters-header">
       <p class="mat-h2">Filters</p>
-      <button mat-raised-button color="primary" *ngIf="hasFilterChanged">Apply</button>
+      <button mat-raised-button color="primary" *ngIf="hasFilterChanged()">Apply</button>
     </div>
     <p class="mat-h3, filters-section-header">Writers</p>
     <div *ngFor="let writer of filteredModel?.filters?.writers">
@@ -17,5 +17,18 @@
     <div *ngFor="let category of filteredModel?.filters?.categories">
       <mat-checkbox >{{category.name}}</mat-checkbox>
     </div>
+    <ngx-slider [(value)]="selectedMinPageCount" [(highValue)]="selectedMaxPageCount" [options]="{floor: filteredModel!.filters!.minPageCount, ceil: filteredModel!.filters!.maxPageCount}"></ngx-slider>
+  </div>
+  <div class="book-cards-container">
+    <mat-card *ngFor="let book of filteredModel?.books?.entities">
+      <mat-card-title>
+        <span class="mat-h4">{{book.title}}</span>
+      </mat-card-title>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <img alt="" src="{{book!.pictureLink != null ? book!.pictureLink : '../../../assets/images/default_book_pic.png'}}">
+        <span>{{book!.description!.length > 100 ? book!.description!.slice(0, 100) + '...' : book!.description!}}</span>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

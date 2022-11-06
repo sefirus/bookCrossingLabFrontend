@@ -18,10 +18,12 @@ export class BooksPageComponent implements OnInit {
   public books?: Book[]
   public currentCategory?: Category;
   public filteredModel?: FilteredBooks;
-  public hasFilterChanged: boolean = false
+  public hasCheckboxesChanged: boolean = false
   private selectedWriterIds: number[] = [];
   private selectedPublisherIds: number[] = [];
   private selectedCategoryIds: number[] = [];
+  public selectedMaxPageCount: number = 0;
+  public selectedMinPageCount: number = 0;
 
 
   constructor(
@@ -38,13 +40,21 @@ export class BooksPageComponent implements OnInit {
 
   }
 
+  public hasFilterChanged(): boolean{
+    return this.hasCheckboxesChanged
+      || (this.selectedMaxPageCount != 0  && this.selectedMaxPageCount != this.filteredModel?.filters.maxPageCount)
+      || (this.selectedMinPageCount != 0  && this.selectedMinPageCount != this.filteredModel?.filters.minPageCount)
+
+  }
+
   updateContent(): void {
     const currentCategoryId = this.route.snapshot.params['id'] as number;
 
       this.http.get<FilteredBooks>(`${apiBase}/books/category/${currentCategoryId}`).subscribe(data => {
         this.books = data.books.entities;
         this.filteredModel = data;
-        console.log(data)
+        this.selectedMaxPageCount = this.filteredModel.filters.maxPageCount;
+        this.selectedMinPageCount = this.filteredModel.filters.minPageCount;
       })
     this.http.get<Category>(`${apiBase}/categories`).subscribe(data => {
       data.childCategories.forEach(cat =>{
@@ -62,7 +72,7 @@ export class BooksPageComponent implements OnInit {
   }
 
   public onWriterCheckBox(event: MatCheckboxChange, item: {id: number, fullName: string}): void {
-    this.hasFilterChanged = true;
+    this.hasCheckboxesChanged = true;
     if(event.checked)
       this.selectedWriterIds.push(item.id);
     else

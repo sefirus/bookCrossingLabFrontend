@@ -16,4 +16,5 @@ export interface Book {
   language: string;
   pageCount: number;
   rate: number;
+  pictureLink: string;
 }
