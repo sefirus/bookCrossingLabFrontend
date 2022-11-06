@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import configData from "../../../../assets/config.json";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Book} from "../../../core/models/Book";
 import {Category} from "../../../core/models/Category";
 import {FilteredBooks} from "../../../core/models/FilteredBooks";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {Filters} from "../../../core/models/Filters";
 
 let apiBase = configData.apiBase
 
@@ -37,7 +38,6 @@ export class BooksPageComponent implements OnInit {
     })}
 
   ngOnInit(): void {
-
   }
 
   public hasFilterChanged(): boolean{
@@ -49,13 +49,12 @@ export class BooksPageComponent implements OnInit {
 
   updateContent(): void {
     const currentCategoryId = this.route.snapshot.params['id'] as number;
-
-      this.http.get<FilteredBooks>(`${apiBase}/books/category/${currentCategoryId}`).subscribe(data => {
-        this.books = data.books.entities;
-        this.filteredModel = data;
-        this.selectedMaxPageCount = this.filteredModel.filters.maxPageCount;
-        this.selectedMinPageCount = this.filteredModel.filters.minPageCount;
-      })
+    this.http.get<FilteredBooks>(`${apiBase}/books/category/${currentCategoryId}`).subscribe(data => {
+      this.books = data.books.entities;
+      this.filteredModel = data;
+      this.selectedMaxPageCount = this.filteredModel.filters.maxPageCount;
+      this.selectedMinPageCount = this.filteredModel.filters.minPageCount;
+    })
     this.http.get<Category>(`${apiBase}/categories`).subscribe(data => {
       data.childCategories.forEach(cat =>{
         if(cat.id == currentCategoryId){
@@ -77,5 +76,40 @@ export class BooksPageComponent implements OnInit {
       this.selectedWriterIds.push(item.id);
     else
       this.selectedWriterIds = this.selectedWriterIds.filter(selectedItem => selectedItem != item.id);
+  }
+
+  public onCategoryCheckBox(event: MatCheckboxChange, item: {id: number, name: string}): void {
+    this.hasCheckboxesChanged = true;
+    if(event.checked)
+      this.selectedCategoryIds.push(item.id);
+    else
+      this.selectedCategoryIds = this.selectedCategoryIds.filter(selectedItem => selectedItem != item.id);
+  }
+
+  public onPublisherCheckBox(event: MatCheckboxChange, item: {id: number, name: string}): void {
+    this.hasCheckboxesChanged = true;
+    if(event.checked)
+      this.selectedPublisherIds.push(item.id);
+    else
+      this.selectedPublisherIds = this.selectedPublisherIds.filter(selectedItem => selectedItem != item.id);
+  }
+
+  public onApplyFilters(): void{
+    this.hasCheckboxesChanged = false
+    if(this.selectedCategoryIds.length == 0) {
+      this.selectedCategoryIds.push(this.currentCategory!.id!)
+    }
+    const filters = {
+      language: [],
+      writerIds: this.selectedWriterIds,
+      categoryIds: this.selectedCategoryIds.length == 0
+        ? [this.currentCategory!.id!]
+        : this.selectedCategoryIds,
+      publisherIds: this.selectedPublisherIds
+    }
+    console.log(this.currentCategory)
+    this.http.post<any>(`${apiBase}/books/filtered`, filters).subscribe(data => {
+      this.books = data.entities;
+    })
   }
 }

@@ -1,9 +1,8 @@
 <div class="page-wrapper">
-<!--  <p class="mat-headline">{{currentCategory?.name}} Books</p>-->
   <div class="filters-wrapper">
     <div class="filters-header">
       <p class="mat-h2">Filters</p>
-      <button mat-raised-button color="primary" *ngIf="hasFilterChanged()">Apply</button>
+      <button mat-raised-button color="primary" *ngIf="hasFilterChanged()" (click)="onApplyFilters()">Apply</button>
     </div>
     <p class="mat-h3, filters-section-header">Writers</p>
     <div *ngFor="let writer of filteredModel?.filters?.writers">
@@ -11,16 +10,16 @@
     </div>
     <p class="mat-h3, filters-section-header">Publishers</p>
     <div *ngFor="let publisher of filteredModel?.filters?.publishers">
-      <mat-checkbox >{{publisher.name}}</mat-checkbox>
+      <mat-checkbox (change)="onPublisherCheckBox($event, publisher)">{{publisher.name}}</mat-checkbox>
     </div>
     <p class="mat-h3, filters-section-header">Categories</p>
     <div *ngFor="let category of filteredModel?.filters?.categories">
-      <mat-checkbox >{{category.name}}</mat-checkbox>
+      <mat-checkbox (change)="onCategoryCheckBox($event, category)">{{category.name}}</mat-checkbox>
     </div>
     <ngx-slider [(value)]="selectedMinPageCount" [(highValue)]="selectedMaxPageCount" [options]="{floor: filteredModel!.filters!.minPageCount, ceil: filteredModel!.filters!.maxPageCount}"></ngx-slider>
   </div>
   <div class="book-cards-container">
-    <mat-card *ngFor="let book of filteredModel?.books?.entities">
+    <mat-card *ngFor="let book of books">
       <mat-card-title>
         <span class="mat-h4">{{book.title}}</span>
       </mat-card-title>

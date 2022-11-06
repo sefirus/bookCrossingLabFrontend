@@ -1,23 +1,8 @@
 import {Book} from "./Book";
+import {Filters} from "./Filters";
 
 export interface FilteredBooks {
-  filters : {
-    categories : {
-      id : number,
-      name : string
-    }[],
-    writers : {
-      id : number,
-      fullName : string,
-    }[],
-    publishers : {
-      id : number,
-      name : string
-    }[],
-    languages : string[],
-    minPageCount : number,
-    maxPageCount : number
-  },
+  filters : Filters,
   books : {
     entities : Book[]
   }
