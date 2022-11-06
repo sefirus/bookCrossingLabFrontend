@@ -19,7 +19,7 @@
     <ngx-slider [(value)]="selectedMinPageCount" [(highValue)]="selectedMaxPageCount" [options]="{floor: filteredModel!.filters!.minPageCount, ceil: filteredModel!.filters!.maxPageCount}"></ngx-slider>
   </div>
   <div class="book-cards-container">
-    <mat-card *ngFor="let book of books">
+    <mat-card *ngFor="let book of books" (click)="onOpenBook(book)">
       <mat-card-title>
         <span class="mat-h4">{{book.title}}</span>
       </mat-card-title>

@@ -1,0 +1,12 @@
+<div class="page-wrapper">
+  <div class="image-props-wrapper">
+    <img src="{{book?.pictureLink}}">
+    <div class="props-wrapper">
+      <p class="mat-h2">{{book?.title}}</p>
+      <p class="mat-h3">{{getBookWriters()}}</p>
+      <p class="mat-h3">Publisher: {{book?.publisher?.name}}</p>
+      <p class="mat-h3">Page count: {{book?.pageCount}}</p>
+    </div>
+  </div>
+  <span class="mat-h4">{{book?.description}}</span>
+</div>

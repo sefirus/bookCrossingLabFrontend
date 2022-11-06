@@ -40,7 +40,7 @@
   <div class="user-operations-container">
     <a mat-button *ngIf="!authService.isAuthorized()" (click)="onRegister()">Sign up</a>
     <a mat-button *ngIf="!authService.isAuthorized()"  (click)="onLogin()">Login</a>
-    <a *ngIf="authService.isAuthorized()" [routerLink]="['/users', authService.getUserId()]">
+    <a *ngIf="authService.isAuthorized()" [routerLink]="['/profile']">
       <div class="user-img-wrapper">
         <img
           [src]="profilePictureLink"

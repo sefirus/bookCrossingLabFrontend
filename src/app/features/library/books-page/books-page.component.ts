@@ -105,11 +105,18 @@ export class BooksPageComponent implements OnInit {
       categoryIds: this.selectedCategoryIds.length == 0
         ? [this.currentCategory!.id!]
         : this.selectedCategoryIds,
-      publisherIds: this.selectedPublisherIds
+      publisherIds: this.selectedPublisherIds,
+      maxPageCount: this.selectedMaxPageCount,
+      minPageCount : this.selectedMinPageCount
     }
     console.log(this.currentCategory)
     this.http.post<any>(`${apiBase}/books/filtered`, filters).subscribe(data => {
       this.books = data.entities;
     })
+  }
+
+  public onOpenBook(book: Book): void{
+    this.router.navigate([`books/${book.id}`]);
+
   }
 }
