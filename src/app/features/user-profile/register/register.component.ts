@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   public isFirstNameInvalid : boolean = true
   public isLastNameInvalid : boolean = true
   public isEmailInvalid : boolean = true
+
   public isButtonDisabled() : boolean{ return this.isPasswordInvalid
     || this.isRepeatPasswordInvalid
     || this.isFirstNameInvalid

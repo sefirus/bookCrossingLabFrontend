@@ -19,7 +19,9 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {ProfilePageComponent} from "./features/user-profile/profile-page/profile-page.component";
 import {InterceptorInterceptor} from "./core/interceptors/interceptor.interceptor";
-import {BooksPageComponent} from "./features/library/books-page/books-page.component";
+import {MAT_AUTOCOMPLETE_SCROLL_STRATEGY} from "@angular/material/autocomplete";
+import {MAT_SELECT_SCROLL_STRATEGY_PROVIDER} from "@angular/material/select";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 
 const routes: Routes = [
@@ -62,10 +64,16 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         MatDialogModule,
       MatDatepickerModule,
-      MatNativeDateModule
+      MatNativeDateModule,
+      ScrollingModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true }
+    // ,
+    // {
+    //   provide: MAT_AUTOCOMPLETE_SCROLL_STRATEGY,
+    //   useValue: MAT_SELECT_SCROLL_STRATEGY_PROVIDER,
+    // }
   ],
   bootstrap: [AppComponent]
 })

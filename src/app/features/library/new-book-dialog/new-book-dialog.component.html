@@ -1,0 +1,20 @@
+<div class="example-form" [formGroup]="form">
+  <mat-form-field class="example-full-width" [ngStyle]="{'width':'520px'}" appearance="outline">
+    <mat-label>Number</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           formControlName="apiSearch"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelect($event)" >
+      <mat-option *ngFor="let option of apiBooks" [value]="option.title">
+        <div class="option-div">
+          <img src="{{option.thumbnailLink}}">
+          <span class="mat-h4">{{option.title}}</span>
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-raised-button type="submit" [disabled]="isButtonDisabled()" (click)="onSubmit()">Add</button>
+</div>

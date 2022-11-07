@@ -8,6 +8,14 @@ import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ViewBookPageComponent } from './view-book-page/view-book-page.component';
+import {MatIconModule} from "@angular/material/icon";
+import { NewBookDialogComponent } from './new-book-dialog/new-book-dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MAT_AUTOCOMPLETE_SCROLL_STRATEGY, MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+import {MAT_SELECT_SCROLL_STRATEGY_PROVIDER} from "@angular/material/select";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 const routes: Routes = [
   {
@@ -24,7 +32,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     BooksPageComponent,
-    ViewBookPageComponent
+    ViewBookPageComponent,
+    NewBookDialogComponent
   ],
   imports: [
     CommonModule,
@@ -33,8 +42,21 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatIconModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    ScrollingModule
   ],
   exports: [RouterModule]
+  // ,
+  // providers: [
+  //   {
+  //     provide: MAT_AUTOCOMPLETE_SCROLL_STRATEGY,
+  //     useValue: MAT_SELECT_SCROLL_STRATEGY_PROVIDER,
+  //   }
+  // ]
 })
 export class LibraryModule { }

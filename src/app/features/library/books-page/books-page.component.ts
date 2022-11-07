@@ -7,6 +7,10 @@ import {Category} from "../../../core/models/Category";
 import {FilteredBooks} from "../../../core/models/FilteredBooks";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {Filters} from "../../../core/models/Filters";
+import {AuthService} from "../../../core/services/auth.service";
+import {RegisterComponent} from "../../user-profile/register/register.component";
+import {MatDialog} from "@angular/material/dialog";
+import {NewBookDialogComponent} from "../new-book-dialog/new-book-dialog.component";
 
 let apiBase = configData.apiBase
 
@@ -31,6 +35,8 @@ export class BooksPageComponent implements OnInit {
     private http : HttpClient,
     private router: Router,
     private route: ActivatedRoute,
+    public auth: AuthService,
+    private matDialog : MatDialog,
   ) {
     this.updateContent();
     this.route.paramMap.subscribe(() => {
@@ -117,6 +123,12 @@ export class BooksPageComponent implements OnInit {
 
   public onOpenBook(book: Book): void{
     this.router.navigate([`books/${book.id}`]);
+  }
 
+  public onNewBook(): void{
+    const dialogRef = this.matDialog.open(NewBookDialogComponent, {});
+    dialogRef.afterClosed().subscribe(data => {
+      if(data) this.updateContent()
+    })
   }
 }

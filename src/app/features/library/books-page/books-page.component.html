@@ -19,7 +19,7 @@
     <ngx-slider [(value)]="selectedMinPageCount" [(highValue)]="selectedMaxPageCount" [options]="{floor: filteredModel!.filters!.minPageCount, ceil: filteredModel!.filters!.maxPageCount}"></ngx-slider>
   </div>
   <div class="book-cards-container">
-    <mat-card *ngFor="let book of books" (click)="onOpenBook(book)">
+    <mat-card class="mat-elevation-z12" *ngFor="let book of books" (click)="onOpenBook(book)">
       <mat-card-title>
         <span class="mat-h4">{{book.title}}</span>
       </mat-card-title>
@@ -29,5 +29,19 @@
         <span>{{book!.description!.length > 100 ? book!.description!.slice(0, 100) + '...' : book!.description!}}</span>
       </mat-card-content>
     </mat-card>
+    <mat-card
+      (click)="onNewBook()"
+      class="mat-elevation-z12 new-card">
+<!--      *ngIf="auth.isAuthorized() && auth.isInRole('Admin')"-->
+
+      <mat-card-title>
+        <span class="title-span">New book</span>
+      </mat-card-title>
+      <mat-divider inset></mat-divider>
+      <mat-card-content class="new-card-content">
+        <mat-icon class="new-article-icon">add</mat-icon>
+      </mat-card-content>
+    </mat-card>
+
   </div>
 </div>
