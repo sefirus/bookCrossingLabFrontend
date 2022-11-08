@@ -37,8 +37,11 @@ const routes: Routes = [
   {
     path: "books",
     loadChildren: () => import('./features/library/library.module').then(m => m.LibraryModule),
+  },
+  {
+    path: "shelves",
+    loadChildren: () => import('./features/shelves/shelves.module').then(m => m.ShelvesModule),
   }
-
 
 ];
 

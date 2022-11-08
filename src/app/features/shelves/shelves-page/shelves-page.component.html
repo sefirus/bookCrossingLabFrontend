@@ -6,10 +6,23 @@
         <div>
           <span class="mat-h4">{{shelf.title}}</span>
           <mat-divider inset></mat-divider>
-          <span>{{shelf?.formattedAddress!.length > 100 ? shelf?.formattedAddress?.slice(0, 100) + '...' : shelf?.formattedAddress}}</span>
+          <span>{{shelf!.formattedAddress!.length > 100 ? shelf!.formattedAddress!.slice(0, 100) + '...' : shelf?.formattedAddress}}</span>
         </div>
-        <img alt="" src="{{shelf?.pictures[0] != null ? shelf.pictures[0] : '../../../assets/images/default_book_pic.png'}}">
+        <img alt="" src="{{shelf!.pictures[0] != null ? shelf!.pictures[0] : '../../../assets/images/default_book_pic.png'}}">
       </mat-card-content>
     </mat-card>
+    <mat-card
+    (click)="onNewShelf()"
+    class="mat-elevation-z12 new-card"
+    *ngIf="auth.isAuthorized() && auth.isManager()">
+    <mat-card-title>
+      <span class="title-span">New Shelf</span>
+    </mat-card-title>
+    <mat-divider inset></mat-divider>
+    <mat-card-content class="new-card-content">
+      <mat-icon class="new-article-icon">add</mat-icon>
+    </mat-card-content>
+  </mat-card>
+
   </div>
 </div>

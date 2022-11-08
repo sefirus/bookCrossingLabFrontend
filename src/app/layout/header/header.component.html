@@ -1,9 +1,8 @@
 <mat-toolbar color="primary" class="header-container">
   <div class="header-buttons">
-    <a mat-button routerLink="/">VetClinic</a>
-    <a mat-button routerLinkActive="active" routerLink="/shelves">Shelves</a>
+    <a mat-button routerLink="/">BookCrossing</a>
+    <a mat-button routerLink="/shelves">Shelves</a>
     <a mat-button
-       routerLinkActive="active"
        routerLink="/library"
        [disabled]="parentMenuCategory == null"
        [matMenuTriggerFor]="catalogMenu">Library</a>

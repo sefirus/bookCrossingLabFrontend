@@ -37,4 +37,8 @@ export class ShelvesPageComponent implements OnInit {
   onOpenShelf(shelf: Shelf): void{
 
   }
+
+  onNewShelf(): void{
+
+  }
 }

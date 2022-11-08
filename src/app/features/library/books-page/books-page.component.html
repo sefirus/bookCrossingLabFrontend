@@ -31,8 +31,8 @@
     </mat-card>
     <mat-card
       (click)="onNewBook()"
-      class="mat-elevation-z12 new-card">
-      *ngIf="auth.isAuthorized() && auth.isInRole('Admin')"
+      class="mat-elevation-z12 new-card"
+      *ngIf="auth.isAuthorized() && auth.isManager()">
       <mat-card-title>
         <span class="title-span">New book</span>
       </mat-card-title>
