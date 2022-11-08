@@ -1,0 +1,15 @@
+<div class="page-wrapper">
+  <p class="mat-h1">Shelves</p>
+  <div class="shelves-cards-container">
+    <mat-card class="mat-elevation-z12" *ngFor="let shelf of shelves" (click)="onOpenShelf(shelf)">
+      <mat-card-content>
+        <div>
+          <span class="mat-h4">{{shelf.title}}</span>
+          <mat-divider inset></mat-divider>
+          <span>{{shelf?.formattedAddress!.length > 100 ? shelf?.formattedAddress?.slice(0, 100) + '...' : shelf?.formattedAddress}}</span>
+        </div>
+        <img alt="" src="{{shelf?.pictures[0] != null ? shelf.pictures[0] : '../../../assets/images/default_book_pic.png'}}">
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
