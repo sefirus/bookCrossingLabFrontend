@@ -6,6 +6,7 @@ import {AuthService} from "../../../core/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import configData from "../../../../assets/config.json";
 import {CreateShelfDialogComponent} from "../create-shelf-dialog/create-shelf-dialog.component";
+import {Book} from "../../../core/models/Book";
 
 let apiBase = configData.apiBase
 
@@ -36,7 +37,7 @@ export class ShelvesPageComponent implements OnInit {
   }
 
   onOpenShelf(shelf: Shelf): void{
-
+    this.router.navigate([`shelves/${shelf.id}`]);
   }
 
   onNewShelf(): void{

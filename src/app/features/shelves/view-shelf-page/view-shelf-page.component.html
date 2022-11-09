@@ -1,1 +1,10 @@
-<p>view-shelf-page works!</p>
+<div class="page-wrapper">
+  <div>
+    <img class="shelf-picture" src="{{currentShelf!.pictures[0]!}}" alt="">
+    <div class="props-wrapper">
+      <p class="mat-h2">{{currentShelf?.title!}}</p>
+      <p class="mat-h3">{{currentShelf?.formattedAddress!}}</p>
+    </div>
+  </div>
+  <p>BookCopies here</p>
+</div>
