@@ -7,6 +7,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule, Routes} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
 
 const routes: Routes = [
   {
@@ -31,6 +35,10 @@ const routes: Routes = [
     MatDividerModule,
     MatIconModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
   ],
   exports: [
     RouterModule

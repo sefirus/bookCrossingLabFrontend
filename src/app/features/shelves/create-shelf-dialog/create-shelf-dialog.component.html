@@ -1,1 +1,75 @@
-<p>create-shelf-dialog works!</p>
+<div class="dialog-wrapper">
+  <div [formGroup]="form">
+    <div class="mat-title">New shelf</div>
+    <p class="names-container">
+      <mat-form-field [ngStyle]="{'width':'520px'}" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          type="string"
+          minlength="1"
+          placeholder="Title">
+        <mat-hint>Enter shelf title</mat-hint>
+        <mat-error *ngIf="isTitleInvalid">Length must be greater than 1</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field [ngStyle]="{'width':'520px'}" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          formControlName="formattedAddress"
+          type="string"
+          minlength="1"
+          placeholder="Address">
+        <mat-hint>Enter shelf address</mat-hint>
+        <mat-error *ngIf="isFormattedAddressInvalid">Length must be greater than 1</mat-error>
+      </mat-form-field>
+    </p>
+    <p class="coords-block">
+      <mat-form-field [ngStyle]="{'width':'240px'}" appearance="outline">
+        <mat-label>Longitude</mat-label>
+        <input
+          matInput
+          formControlName="longitude"
+          type="number"
+          minlength="1"
+          placeholder="Longitude">
+        <mat-hint>Enter longitude coordinate of the shelf</mat-hint>
+        <mat-error *ngIf="isLongitudeInvalid">Must be valid</mat-error>
+      </mat-form-field>
+      <mat-form-field [ngStyle]="{'width':'240px'}" appearance="outline">
+        <mat-label>Latitude</mat-label>
+        <input
+          matInput
+          formControlName="latitude"
+          type="number"
+          minlength="1"
+          placeholder="Latitude">
+        <mat-hint>Enter latitude coordinate of the shelf</mat-hint>
+        <mat-error *ngIf="isLatitudeInvalid">Must e valid</mat-error>
+      </mat-form-field>
+    </p>
+    <p class="buttons-div">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="isButtonDisabled()"
+        (click)="onSave()">
+        Save
+      </button>
+      <button
+        mat-flat-button
+        (click)="onNoClick()">
+        Cancel
+      </button>
+    </p>
+  </div>
+  <div class="img-wrapper">
+    <img src="{{picture}}" alt="">
+    <button id="profile-pic-btn" type="button" mat-raised-button (click)="fileInput.click()">Upload shelf picture</button>
+    <input hidden (change)="handleFileChange($event)" #fileInput type="file">
+  </div>
+</div>

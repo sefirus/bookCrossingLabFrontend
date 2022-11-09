@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../core/services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import configData from "../../../../assets/config.json";
+import {CreateShelfDialogComponent} from "../create-shelf-dialog/create-shelf-dialog.component";
 
 let apiBase = configData.apiBase
 
@@ -28,9 +29,9 @@ export class ShelvesPageComponent implements OnInit {
   }
 
   updateContent() : void{
-    this.http.get<Shelf[]>(`${apiBase}/shelves`)
+    this.http.get<any>(`${apiBase}/shelves`)
       .subscribe(data => {
-        this.shelves = data;
+        this.shelves = data.entities;
       })
   }
 
@@ -39,6 +40,11 @@ export class ShelvesPageComponent implements OnInit {
   }
 
   onNewShelf(): void{
-
+    const ref = this.matDialog.open(CreateShelfDialogComponent)
+    ref.afterClosed().subscribe(data => {
+      if(data){
+        this.updateContent()
+      }
+    })
   }
 }
