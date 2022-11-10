@@ -1,3 +1,5 @@
+import {BookCopy} from "./BookCopy";
+
 export interface User {
   email: string;
   firstName: string | null;
@@ -6,5 +8,5 @@ export interface User {
   id: number;
   isActive: boolean;
   profilePicture: string;
-  currentBooks: string[] | null;
+  currentBooks: BookCopy[];
 }

@@ -12,5 +12,31 @@
         (click)="onEdit()">Edit</button>
     </div>
   </div>
-  <p>current book copies here</p>
+  <div class="current-books-container">
+    <mat-card class="mat-elevation-z12" *ngFor="let bookCopy of currentUser?.currentBooks">
+      <mat-card-content>
+        <img alt="" src="{{bookCopy.book!.pictureLink != null
+        ? bookCopy.book!.pictureLink
+        : '../../../assets/images/default_book_pic.png'}}">
+        <div>
+          <span class="mat-h4">{{bookCopy.book.title}}</span>
+          <mat-divider inset></mat-divider>
+          <span>{{bookCopy.book!.description.length > 100
+            ? bookCopy.book!.description.slice(0, 100) + '...'
+            : bookCopy.book!.description}}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card
+      (click)="onNewBookCopy()"
+      class="mat-elevation-z12 new-card">
+      <mat-card-title>
+        <span class="title-span">New Book Copy</span>
+      </mat-card-title>
+      <mat-divider inset></mat-divider>
+      <mat-card-content class="new-card-content">
+        <mat-icon class="new-article-icon">add</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

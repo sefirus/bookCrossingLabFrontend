@@ -15,7 +15,6 @@ let apiBase = configData.apiBase
   styleUrls: ['./profile-page.component.sass']
 })
 export class ProfilePageComponent implements OnInit {
-
   currentUser: User | null = null
 
   constructor(
@@ -44,5 +43,9 @@ export class ProfilePageComponent implements OnInit {
           this.ngOnInit();
       }
     });
+  }
+
+  onNewBookCopy(): void{
+
   }
 }

@@ -14,6 +14,10 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {InterceptorInterceptor} from "../../core/interceptors/interceptor.interceptor";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
+import { CreateBookCopyDialogComponent } from './create-book-copy-dialog/create-book-copy-dialog.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 
@@ -22,7 +26,8 @@ import {InterceptorInterceptor} from "../../core/interceptors/interceptor.interc
     LoginComponent,
     RegisterComponent,
     ProfilePageComponent,
-    EditUserComponent
+    EditUserComponent,
+    CreateBookCopyDialogComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +40,10 @@ import {InterceptorInterceptor} from "../../core/interceptors/interceptor.interc
     MatDatepickerModule,
     MatIconModule,
     MatNativeDateModule,
-    MatRippleModule
+    MatRippleModule,
+    MatCardModule,
+    MatDividerModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true }

@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HeaderComponent} from "../../../layout/header/header.component";
-import {Observable} from "rxjs";
 import {SearchBook} from "../../../core/models/SearchBook";
 import {HttpClient} from "@angular/common/http";
 import configData from "../../../../assets/config.json";
